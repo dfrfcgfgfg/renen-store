@@ -90,23 +90,16 @@
 <body>
     <div class="container">
         <h1>Seja Revendedor</h1>
-        <p>Você quer mesmo ser revendedor da Renen Store?</p>
-        <div id="nameForm" style="display: none;">
+        <div id="nameForm">
             <input type="text" id="nameInput" placeholder="Digite seu nome aqui..." required>
-            <button onclick="redirectToWhatsApp()">Continuar</button>
         </div>
+        <p>Você quer mesmo ser revendedor da Renen Store?</p>
         <div class="buttons">
-            <button onclick="showNameForm()">SIM</button>
+            <button onclick="redirectToWhatsApp()">SIM</button>
             <button onclick="closePage()">NÃO</button>
         </div>
     </div>
     <script>
-        function showNameForm() {
-            document.getElementById('nameForm').style.display = 'block';
-            document.getElementById('nameInput').focus();
-            document.querySelector('.buttons').style.display = 'none';
-        }
-
         function redirectToWhatsApp() {
             const name = document.getElementById('nameInput').value.trim();
             if (!name) {
