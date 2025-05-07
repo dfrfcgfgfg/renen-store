@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renen Store - Seja Revendedor</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --background: #1a237e;
+            --text: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: var(--background);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        #nameForm {
+            display: none;
+            margin-bottom: 2rem;
+        }
+
+        #nameForm input {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--primary);
+            color: var(--text);
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Seja Revendedor</h1>
+        <p>Você quer mesmo ser revendedor da Renen Store?</p>
+        <div id="nameForm">
+            <input type="text" id="nameInput" placeholder="Digite seu nome aqui..." required>
+            <button onclick="redirectToWhatsApp()">Continuar</button>
+        </div>
+        <div class="buttons">
+            <button onclick="showNameForm()">SIM</button>
+            <button onclick="closePage()">NÃO</button>
+        </div>
+    </div>
+    <script>
+        function showNameForm() {
+            document.getElementById('nameForm').style.display = 'block';
+            document.getElementById('nameInput').focus();
+            document.querySelector('.buttons').style.display = 'none';
+        }
+
+        function redirectToWhatsApp() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (!name) {
+                alert('Por favor, digite seu nome');
+                return;
+            }
+
+            const message = encodeURIComponent(`Olá, ${name} aqui! Quero ser revendedor da Renen Store`);
+            const phone = "5583991534841";
+            window.location.href = `https://wa.me/${phone}?text=${message}`;
+        }
+
+        function closePage() {
+            alert('Você decidiu não se tornar revendedor da Renen Store.');
+            window.close();
+        }
+    </script>
+</body>
+</html>
