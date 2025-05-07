@@ -13,12 +13,39 @@
             <div class="message-container">
                 <p class="message">Você quer mesmo ser revendedor da Renen Store?</p>
             </div>
+            <div id="nameForm" style="display: none;">
+                <input type="text" id="nameInput" placeholder="Digite seu nome aqui..." required>
+                <button class="button yes" onclick="redirectToWhatsAppWithUsername()">Continuar</button>
+            </div>
             <div class="button-group">
-                <button class="button yes" onclick="redirectToWhatsApp()">SIM</button>
+                <button class="button yes" onclick="showNameForm()">SIM</button>
                 <button class="button no" onclick="closePage()">NÃO</button>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        function showNameForm() {
+            document.getElementById('nameForm').style.display = 'block';
+            document.getElementById('nameInput').focus();
+            document.querySelector('.button-group').style.display = 'none';
+        }
+
+        function redirectToWhatsAppWithUsername() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (!name) {
+                alert('Por favor, digite seu nome');
+                return;
+            }
+
+            const message = encodeURIComponent(`Olá, ${name} aqui! Quero ser revendedor da Renen Store`);
+            const phone = "5583991534841";
+            window.location.href = `https://wa.me/${phone}?text=${message}`;
+        }
+
+        function closePage() {
+            alert('Você decidiu não se tornar revendedor da Renen Store.');
+            window.close();
+        }
+    </script>
 </body>
 </html>
